@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Proxy 代理</title>
+  </head>
+  <body>
+    <script>
+      const obj = {
+        testAge: 30,
+        name: '你妹',
+        age: 18,
+
+        get age() {
+          console.log('get age');
+          return this.testAge;
+        },
+
+        set age(newValue) {
+          console.log(newValue, ' <=====> newValue');
+          this.testAge = newValue - 1;
+        },
+      };
+
+      const proxyObj = new Proxy(obj, {
+        get(target, propKey, receiver) {
+          return target[propKey];
+        },
+
+        set(target, propKey, newValue) {
+          target[propKey] = newValue;
+        },
+      });
+
+      console.log(obj.age, ' <=====> obj.age');
+      proxyObj.age = 50;
+      console.log(obj.age, ' <=====> obj.age');
+      console.log(proxyObj.age, ' <=====> proxyObj.age');
+    </script>
+  </body>
+</html>

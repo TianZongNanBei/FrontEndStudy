@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>标签模板字符串</title>
+  </head>
+  <body>
+    <script>
+      // 带标签的模板是模板字面量的一种更高级的形式，它允许你使用函数解析模板字面量。标签函数的第一个参数包含一个字符串数组，其余的参数与表达式相关。你可以用标签函数对这些参数执行任何操作，并返回被操作过的字符串（或者，也可返回完全不同的内容，见下面的示例）。用作标签的函数名没有限制。
+
+      const person = '小杰';
+      const age = 35;
+
+      function myTagFn(strings, params1, params2, ...values) {
+        console.log(strings, ' <=====> strings');
+        console.log(params1, ' <=====> params1');
+        console.log(params2, ' <=====> params2');
+        console.log(values, ' <=====> values');
+
+        return `${strings[0]}${params1}${strings[1]}${params2}${strings[2]}`;
+      }
+
+      const result = myTagFn`Yeah! ${person} is ${age} years old. ${'hahaha'} ${'OK!'}`;
+      console.log(result, ' <=====> result');
+
+      console.log`Hello`; // [ 'Hello' ]
+    </script>
+  </body>
+</html>

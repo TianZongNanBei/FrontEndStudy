@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Reflect 代理</title>
+  </head>
+  <body>
+    <script>
+      const obj = {
+        name: '小明',
+        age: 28,
+      };
+
+      // 冻结对象
+      const freezedObj = Object.freeze({
+        name: '小红',
+        age: 12,
+      });
+
+      const objAge = Reflect.get(obj, 'age');
+      console.log(objAge, ' <=====> objAge');
+
+      const res1 = Reflect.set(obj, 'hobby', 'football');
+      const res2 = Reflect.set(freezedObj, 'msg', 'hello');
+
+      console.log(res1, ' <=====> res1');
+      console.log(res2, ' <=====> res2');
+    </script>
+  </body>
+</html>
