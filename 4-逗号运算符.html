@@ -14,6 +14,17 @@
       let num = 1;
       const result2 = (num++, num + 6); // 先执行自增，再加6，输出8
       console.log(result2, ' <=====> result2');
+
+      // 可以作为更改this指向的方式
+      const obj = {
+        name: 'jack',
+        logThis() {
+          console.log(this, ' <=====> this');
+        },
+      };
+
+      obj.logThis(); // this指向obj
+      (0, obj.logThis)(); // this指向全局对象
     </script>
   </body>
 </html>
