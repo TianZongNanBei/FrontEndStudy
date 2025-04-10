@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // 首先定义了一个 TreeNode 类来表示树的节点，每个节点包含一个值和一个子节点数组。
+      // 对于深度优先搜索（dfs 函数），使用递归的方式，先访问当前节点的值，然后递归地访问每个子节点，直到所有节点都被访问。
+
+      // 定义树节点类
+      class TreeNode {
+        constructor(val) {
+          this.val = val;
+          this.children = [];
+        }
+      }
+
+      // 深度优先搜索函数
+      function dfs(root) {
+        if (!root) return [];
+        const result = [];
+        result.push(root.val);
+
+        for (const node of root.children) {
+          result.push(...dfs(node));
+        }
+
+        return result;
+      }
+
+      // 创建一个简单的树结构
+      const root = new TreeNode(1);
+      const node2 = new TreeNode(2);
+      const node3 = new TreeNode(3);
+      const node4 = new TreeNode(4);
+      const node5 = new TreeNode(5);
+      const node6 = new TreeNode(6);
+
+      root.children = [node2, node3];
+      node2.children = [node4, node5];
+      node5.children = [node6];
+
+      // 执行广度优先搜索
+      const dfsResult = dfs(root);
+      console.log(dfsResult);
+    </script>
+  </body>
+</html>
